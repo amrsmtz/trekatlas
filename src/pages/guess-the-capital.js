@@ -6,6 +6,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 import countriesData from "../data/countries.json"
+import "./guess-the-capital.css"
 
 const GuessTheCapitalPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -35,13 +36,13 @@ const GuessTheCapitalPage = () => {
     <Layout>
       <h1>Guess the Capital</h1>
       <h2>{currentQuestion.name}</h2>
-      <ul>
+      <div class="clickable-options">
         {capitals.map((capital, index) => (
-          <li key={index} onClick={() => handleOptionClick(capital)}>
+          <button key={index} onClick={() => handleOptionClick(capital)}>
             {capital}
-          </li>
+          </button>
         ))}
-      </ul>
+      </div>
       {showSuccessMessage && (
         <p>Congratulations! You guessed it right!</p>
       )}
