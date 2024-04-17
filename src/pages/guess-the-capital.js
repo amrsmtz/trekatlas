@@ -64,6 +64,6 @@ const getRandomCapitals = (correctCapital) => {
   return randomCapitals
 }
 
-export const Head = () => <Seo title="Page two" />
+export const Head = () => <Seo title="Guess the Capital" />
 
 export default GuessTheCapitalPage
