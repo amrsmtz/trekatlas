@@ -1,6 +1,5 @@
 import * as React from "react"
 import { useState } from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -9,7 +8,7 @@ import countriesData from "../data/countries.json"
 import "./guess-the-capital.css"
 
 const GuessTheCapitalPage = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(Math.floor(Math.random() * countriesData.length) + 1)
   const [selectedCapital, setSelectedCapital] = useState(null)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
@@ -51,15 +50,14 @@ const GuessTheCapitalPage = () => {
   )
 }
 
-// Function to generate random incorrect capitals
 const getRandomCapitals = (correctCapital) => {
   const allCapitals = countriesData.map((country) => country.capital)
-  const uniqueCapitals = allCapitals.filter((capital) => capital !== correctCapital)
+  const uniqueCapitals = allCapitals.filter((capital) => capital !== correctCapital && capital !== '') // Exclude empty strings
   const randomCapitals = []
   while (randomCapitals.length < 3) {
     const randomIndex = Math.floor(Math.random() * uniqueCapitals.length)
     const randomCapital = uniqueCapitals[randomIndex]
-    if (!randomCapitals.includes(randomCapital)) {
+    if (randomCapital !== '' && !randomCapitals.includes(randomCapital)) { // Check if not empty string
       randomCapitals.push(randomCapital)
     }
   }
