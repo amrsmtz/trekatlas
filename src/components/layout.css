@@ -1,6 +1,10 @@
 * {
   transition: .4s;;
 }
+main {
+  max-width: 600px;;
+  margin: 0 auto;
+}
 footer {
   display: flex;
   justify-content: center;
@@ -12,7 +16,7 @@ footer {
 }
 button {
   cursor: pointer;
-  background-color: #41B06E;
+  background-color: var(--color-primary);
   border: none;
   padding: .8em 1.5em;
   border-radius: 0.5cap;

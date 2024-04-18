@@ -9,3 +9,15 @@ div.clickable-options button {
   border: 1px solid black;
   color: inherit;
 }
+
+div.success-message {
+  min-height: 5em;
+}
+div.success-message p {
+  color: var(--color-primary);
+}
+
+div.controls-section {
+  display: flex;
+  flex-direction: row-reverse;
+}

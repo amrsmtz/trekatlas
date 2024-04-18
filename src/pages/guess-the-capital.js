@@ -42,10 +42,14 @@ const GuessTheCapitalPage = () => {
           </button>
         ))}
       </div>
-      {showSuccessMessage && (
-        <p>Congratulations! You guessed it right!</p>
-      )}
-      <button onClick={handleNextQuestion}>Next</button>
+      <div class="success-message">
+        {showSuccessMessage && (
+          <p>Congratulations! You guessed it right!</p>
+        )}
+      </div>
+      <div class="controls-section">
+        <button onClick={handleNextQuestion}>Next</button>
+      </div>
     </Layout>
   )
 }
