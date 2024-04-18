@@ -19,14 +19,14 @@ const GuessTheCapitalPage = () => {
   ].sort(() => Math.random() - 0.5)
 
   const handleOptionClick = (capital) => {
-    setSelectedCapital(capital)
+    // setSelectedCapital(capital)
     if (capital === currentQuestion.capital) {
       setShowSuccessMessage(true)
     }
   }
 
   const handleNextQuestion = () => {
-    setCurrentQuestionIndex(currentQuestionIndex + 1)
+    setCurrentQuestionIndex(Math.floor(Math.random() * countriesData.length) + 1)
     setSelectedCapital(null)
     setShowSuccessMessage(false)
   }
