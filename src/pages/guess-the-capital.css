@@ -10,9 +10,6 @@ div.clickable-options button {
   color: inherit;
 }
 
-div.success-message {
-  min-height: 5em;
-}
 div.success-message p {
   color: var(--color-primary);
 }
@@ -20,4 +17,9 @@ div.success-message p {
 div.controls-section {
   display: flex;
   flex-direction: row-reverse;
+  position: fixed;
+  left: 0;
+  bottom: 2em;
+  width: 100%;
+  padding: var(--size-gutter);
 }
