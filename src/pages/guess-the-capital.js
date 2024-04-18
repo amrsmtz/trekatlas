@@ -19,7 +19,7 @@ const GuessTheCapitalPage = () => {
   ].sort(() => Math.random() - 0.5)
 
   const handleOptionClick = (capital) => {
-    // setSelectedCapital(capital)
+    setSelectedCapital(capital)
     if (capital === currentQuestion.capital) {
       setShowSuccessMessage(true)
     }
