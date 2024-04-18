@@ -1,8 +1,8 @@
 div.clickable-options {
   display: flex;
+  flex-direction: column;
   gap: 1em;
   margin: 3em 0;
-  flex-wrap: wrap;;
 }
 div.clickable-options button {
   background: none;
