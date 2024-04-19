@@ -8,9 +8,9 @@ import countriesData from "../data/countries.json"
 import "./guess-the-capital.css"
 
 const GuessTheCapitalPage = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(Math.floor(Math.random() * countriesData.length) + 1)
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(Math.floor(Math.random() * countriesData.length))
   const [selectedCapital, setSelectedCapital] = useState(null)
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const [showSuccessMessage, setShowSuccessMessage] = useState(0)
 
   const currentQuestion = countriesData[currentQuestionIndex]
   const capitals = [
@@ -21,33 +21,38 @@ const GuessTheCapitalPage = () => {
   const handleOptionClick = (capital) => {
     setSelectedCapital(capital)
     if (capital === currentQuestion.capital) {
-      setShowSuccessMessage(true)
+      setShowSuccessMessage(1)
+    } else {
+      setShowSuccessMessage(2)
     }
   }
 
   const handleNextQuestion = () => {
-    setCurrentQuestionIndex(Math.floor(Math.random() * countriesData.length) + 1)
+    setCurrentQuestionIndex(Math.floor(Math.random() * countriesData.length))
     setSelectedCapital(null)
-    setShowSuccessMessage(false)
+    setShowSuccessMessage(0)
   }
 
   return (
     <Layout>
       <h1>Guess the Capital</h1>
       <h2>{currentQuestion.name}</h2>
-      <div class="clickable-options">
+      <div className="clickable-options">
         {capitals.map((capital, index) => (
           <button key={index} onClick={() => handleOptionClick(capital)}>
             {capital}
           </button>
         ))}
       </div>
-      <div class="success-message">
-        {showSuccessMessage && (
-          <p>Congratulations! You guessed it right!</p>
+      <div className="message">
+        {showSuccessMessage === 1 && (
+          <p className="success">Congratulations! You guessed it right!</p>
+        )}
+        {showSuccessMessage === 2 && (
+          <p className="failure">Oops! You guessed it wrong.</p>
         )}
       </div>
-      <div class="controls-section">
+      <div className="controls-section">
         <button onClick={handleNextQuestion}>Next</button>
       </div>
     </Layout>

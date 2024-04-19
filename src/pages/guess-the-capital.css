@@ -10,8 +10,11 @@ div.clickable-options button {
   color: inherit;
 }
 
-div.success-message p {
+div.message p.success {
   color: var(--color-primary);
+}
+div.message p.failure {
+  color: var(--color-secondary);
 }
 
 div.controls-section {
