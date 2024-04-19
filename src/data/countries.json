@@ -464,22 +464,6 @@
     "flag": "https://restcountries.eu/data/bwa.svg"
   },
   {
-    "name": "Bouvet Island",
-    "code": "BV",
-    "capital": "",
-    "region": "AN",
-    "currency": {
-      "code": "NOK",
-      "name": "Norwegian krone",
-      "symbol": "kr"
-    },
-    "language": {
-      "code": "no",
-      "name": "Norwegian"
-    },
-    "flag": "https://restcountries.eu/data/bvt.svg"
-  },
-  {
     "name": "Brazil",
     "code": "BR",
     "capital": "Brasília",
@@ -1560,22 +1544,6 @@
     "flag": "https://restcountries.eu/data/hti.svg"
   },
   {
-    "name": "Heard Island and McDonald Islands",
-    "code": "HM",
-    "capital": "",
-    "region": "",
-    "currency": {
-      "code": "AUD",
-      "name": "Australian dollar",
-      "symbol": "$"
-    },
-    "language": {
-      "code": "en",
-      "name": "English"
-    },
-    "flag": "https://restcountries.eu/data/hmd.svg"
-  },
-  {
     "name": "Holy See",
     "code": "VA",
     "capital": "Rome",
@@ -2088,22 +2056,6 @@
       "name": "French"
     },
     "flag": "https://restcountries.eu/data/lux.svg"
-  },
-  {
-    "name": "Macao",
-    "code": "MO",
-    "capital": "",
-    "region": "AS",
-    "currency": {
-      "code": "MOP",
-      "name": "Macanese pataca",
-      "symbol": "P"
-    },
-    "language": {
-      "code": "zh",
-      "name": "Chinese"
-    },
-    "flag": "https://restcountries.eu/data/mac.svg"
   },
   {
     "name": "Macedonia (the former Yugoslav Republic of)",
