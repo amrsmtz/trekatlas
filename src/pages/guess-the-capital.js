@@ -12,13 +12,21 @@ const GuessTheCapitalPage = () => {
   const [selectedCapital, setSelectedCapital] = useState(null)
   const [showSuccessMessage, setShowSuccessMessage] = useState(0)
   const [capitals, setCapitals] = useState(generateCapitals(currentQuestionIndex))
+  const [score, setScore] = useState(0)
+  const [round, setRound] = useState(0)
+  const [showResult, setShowResult] = useState(false)
 
   const currentQuestion = countriesData[currentQuestionIndex]
 
   const handleOptionClick = (capital) => {
     setSelectedCapital(capital)
+    setRound(round + 1)
+    if (round === 10) {
+      setShowResult(true)
+    }
     if (capital === currentQuestion.capital) {
       setShowSuccessMessage(1)
+      setScore(score + 1)
     } else {
       setCapitals(generateCapitals(currentQuestionIndex)) // Refresh capitals only for wrong answers
       setShowSuccessMessage(2)
@@ -46,11 +54,14 @@ const GuessTheCapitalPage = () => {
         ))}
       </div>
       <div className="message">
-        {showSuccessMessage === 1 && (
+        {showSuccessMessage === 1 && !showResult && (
           <p className="success">Congratulations! You guessed it right!</p>
         )}
-        {showSuccessMessage === 2 && (
+        {showSuccessMessage === 2 && !showResult && (
           <p className="failure">Oops! You guessed it wrong.</p>
+        )}
+        {showResult && (
+          <p>You get a score of {score}/20 !</p>
         )}
       </div>
       <div className="controls-section">
