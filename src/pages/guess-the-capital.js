@@ -24,25 +24,15 @@ const GuessTheCapitalPage = () => {
         setCurrentQuestionIndex(newQuestionIndex)
         setSelectedCapital(null)
         setShowMessage(0)
-        // Refresh capitals for the next question
         setCapitals(generateCapitals(newQuestionIndex))
       }, 1300)
     } else {
       setShowMessage(2)
       setTimeout(() => {
-        setCapitals(generateCapitals(currentQuestionIndex)) // Refresh capitals only for wrong answers
+        setCapitals(generateCapitals(currentQuestionIndex))
         setShowMessage(0)
       }, 1300)
     }
-  }
-
-  const handleNextQuestion = () => {
-    const newQuestionIndex = Math.floor(Math.random() * countriesData.length)
-    setCurrentQuestionIndex(newQuestionIndex)
-    setSelectedCapital(null)
-    setShowMessage(0)
-    // Refresh capitals for the next question
-    setCapitals(generateCapitals(newQuestionIndex))
   }
 
   return (
