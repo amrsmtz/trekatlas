@@ -25,13 +25,13 @@ const GuessTheCapitalPage = () => {
         setSelectedCapital(null)
         setShowMessage(0)
         setCapitals(generateCapitals(newQuestionIndex))
-      }, 1300)
+      }, 1000)
     } else {
       setShowMessage(2)
       setTimeout(() => {
         setCapitals(generateCapitals(currentQuestionIndex))
         setShowMessage(0)
-      }, 1300)
+      }, 1000)
     }
   }
 
