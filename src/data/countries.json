@@ -496,22 +496,6 @@
     "flag": "https://restcountries.eu/data/iot.svg"
   },
   {
-    "name": "United States Minor Outlying Islands",
-    "code": "UM",
-    "capital": "",
-    "region": "NA",
-    "currency": {
-      "code": "USD",
-      "name": "United States Dollar",
-      "symbol": "$"
-    },
-    "language": {
-      "code": "en",
-      "name": "English"
-    },
-    "flag": "https://restcountries.eu/data/umi.svg"
-  },
-  {
     "name": "Virgin Islands (British)",
     "code": "VG",
     "capital": "Road Town",

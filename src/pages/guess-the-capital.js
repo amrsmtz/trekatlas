@@ -10,7 +10,7 @@ import "./guess-the-capital.css"
 const GuessTheCapitalPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(Math.floor(Math.random() * countriesData.length))
   const [selectedCapital, setSelectedCapital] = useState(null)
-  const [showSuccessMessage, setShowSuccessMessage] = useState(0)
+  const [showMessage, setShowMessage] = useState(0)
   const [capitals, setCapitals] = useState(generateCapitals(currentQuestionIndex))
   const [score, setScore] = useState(0)
   const [round, setRound] = useState(0)
@@ -20,7 +20,27 @@ const GuessTheCapitalPage = () => {
 
   const handleOptionClick = (capital) => {
     setSelectedCapital(capital)
-    setRound(round + 1)
+   
+    if (capital === currentQuestion.capital) {
+      setShowMessage(1)
+      setTimeout(() => {
+        let newQuestionIndex = Math.floor(Math.random() * countriesData.length)
+        setCurrentQuestionIndex(newQuestionIndex)
+        setSelectedCapital(null)
+        setShowMessage(0)
+        setCapitals(generateCapitals(newQuestionIndex))
+        setScore(score + 1)
+        setRound(round + 1)
+      }, 1000)
+    } else {
+      setShowMessage(2)
+      setTimeout(() => {
+        setCapitals(generateCapitals(currentQuestionIndex))
+        setShowMessage(0)
+        setRound(round + 1)
+      }, 1000)
+    }
+
     if (round === 10) {
       setShowResult(true)
     }
@@ -29,22 +49,6 @@ const GuessTheCapitalPage = () => {
       setRound(0)
       setShowResult(false)
     }
-    if (capital === currentQuestion.capital) {
-      setShowSuccessMessage(1)
-      setScore(score + 1)
-    } else {
-      setCapitals(generateCapitals(currentQuestionIndex)) // Refresh capitals only for wrong answers
-      setShowSuccessMessage(2)
-    }
-  }
-
-  const handleNextQuestion = () => {
-    const newQuestionIndex = Math.floor(Math.random() * countriesData.length)
-    setCurrentQuestionIndex(newQuestionIndex)
-    setSelectedCapital(null)
-    setShowSuccessMessage(0)
-    // Refresh capitals for the next question
-    setCapitals(generateCapitals(newQuestionIndex))
   }
 
   return (
@@ -59,18 +63,15 @@ const GuessTheCapitalPage = () => {
         ))}
       </div>
       <div className="message">
-        {showSuccessMessage === 1 && !showResult && (
+        {showMessage === 1 && !showResult && (
           <p className="success">Congratulations! You guessed it right!</p>
         )}
-        {showSuccessMessage === 2 && !showResult && (
+        {showMessage === 2 && !showResult && (
           <p className="failure">Oops! You guessed it wrong.</p>
         )}
         {showResult && (
           <p>You get a score of {score}/10 !</p>
         )}
-      </div>
-      <div className="controls-section">
-        <button onClick={handleNextQuestion}>Next</button>
       </div>
     </Layout>
   )
