@@ -26,17 +26,23 @@ const GuessTheCapitalPage = () => {
   }
 
   const handleNextQuestion = () => {
-    setCurrentQuestionIndex(Math.floor(Math.random() * countriesData.length))
+    const newQuestionIndex = Math.floor(Math.random() * countriesData.length)
+    setCurrentQuestionIndex(newQuestionIndex)
     setSelectedCapital(null)
     setShowSuccessMessage(0)
     // Refresh capitals for the next question
-    setCapitals(generateCapitals(currentQuestionIndex))
+    setCapitals(generateCapitals(newQuestionIndex))
   }
 
   return (
     <Layout>
       <h1>Guess the Capital</h1>
       <h2>{currentQuestion.name}</h2>
+
+      <p>currentQuestionIndex: {currentQuestionIndex}</p>
+      <p>selectedCapital: {selectedCapital}</p>
+      <p>capital: {currentQuestion.capital}</p>
+
       <div className="clickable-options">
         {capitals.map((capital, index) => (
           <button key={index} onClick={() => handleOptionClick(capital)}>
