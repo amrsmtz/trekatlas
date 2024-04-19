@@ -24,6 +24,11 @@ const GuessTheCapitalPage = () => {
     if (round === 10) {
       setShowResult(true)
     }
+    if (round === 11) {
+      setScore(0)
+      setRound(0)
+      setShowResult(false)
+    }
     if (capital === currentQuestion.capital) {
       setShowSuccessMessage(1)
       setScore(score + 1)
@@ -45,7 +50,7 @@ const GuessTheCapitalPage = () => {
   return (
     <Layout>
       <h1>Guess the Capital</h1>
-      <h2>{currentQuestion.name}</h2>
+      <h2>{currentQuestion.name} {round}/10</h2>
       <div className="clickable-options">
         {capitals.map((capital, index) => (
           <button key={index} onClick={() => handleOptionClick(capital)}>
@@ -61,7 +66,7 @@ const GuessTheCapitalPage = () => {
           <p className="failure">Oops! You guessed it wrong.</p>
         )}
         {showResult && (
-          <p>You get a score of {score}/20 !</p>
+          <p>You get a score of {score}/10 !</p>
         )}
       </div>
       <div className="controls-section">
