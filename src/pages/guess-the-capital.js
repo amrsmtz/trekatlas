@@ -10,7 +10,7 @@ import "./guess-the-capital.css"
 const GuessTheCapitalPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(Math.floor(Math.random() * countriesData.length))
   const [selectedCapital, setSelectedCapital] = useState(null)
-  const [showSuccessMessage, setShowSuccessMessage] = useState(0)
+  const [showMessage, setShowMessage] = useState(0)
   const [capitals, setCapitals] = useState(generateCapitals(currentQuestionIndex))
 
   const currentQuestion = countriesData[currentQuestionIndex]
@@ -18,10 +18,21 @@ const GuessTheCapitalPage = () => {
   const handleOptionClick = (capital) => {
     setSelectedCapital(capital)
     if (capital === currentQuestion.capital) {
-      setShowSuccessMessage(1)
+      setShowMessage(1)
+      setTimeout(() => {
+        const newQuestionIndex = Math.floor(Math.random() * countriesData.length)
+        setCurrentQuestionIndex(newQuestionIndex)
+        setSelectedCapital(null)
+        setShowMessage(0)
+        // Refresh capitals for the next question
+        setCapitals(generateCapitals(newQuestionIndex))
+      }, 1300)
     } else {
-      setCapitals(generateCapitals(currentQuestionIndex)) // Refresh capitals only for wrong answers
-      setShowSuccessMessage(2)
+      setShowMessage(2)
+      setTimeout(() => {
+        setCapitals(generateCapitals(currentQuestionIndex)) // Refresh capitals only for wrong answers
+        setShowMessage(0)
+      }, 1300)
     }
   }
 
@@ -29,7 +40,7 @@ const GuessTheCapitalPage = () => {
     const newQuestionIndex = Math.floor(Math.random() * countriesData.length)
     setCurrentQuestionIndex(newQuestionIndex)
     setSelectedCapital(null)
-    setShowSuccessMessage(0)
+    setShowMessage(0)
     // Refresh capitals for the next question
     setCapitals(generateCapitals(newQuestionIndex))
   }
@@ -46,15 +57,12 @@ const GuessTheCapitalPage = () => {
         ))}
       </div>
       <div className="message">
-        {showSuccessMessage === 1 && (
+        {showMessage === 1 && (
           <p className="success">Congratulations! You guessed it right!</p>
         )}
-        {showSuccessMessage === 2 && (
+        {showMessage === 2 && (
           <p className="failure">Oops! You guessed it wrong.</p>
         )}
-      </div>
-      <div className="controls-section">
-        <button onClick={handleNextQuestion}>Next</button>
       </div>
     </Layout>
   )
