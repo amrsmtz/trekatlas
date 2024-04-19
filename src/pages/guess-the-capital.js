@@ -11,18 +11,16 @@ const GuessTheCapitalPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(Math.floor(Math.random() * countriesData.length))
   const [selectedCapital, setSelectedCapital] = useState(null)
   const [showSuccessMessage, setShowSuccessMessage] = useState(0)
+  const [capitals, setCapitals] = useState(generateCapitals(currentQuestionIndex))
 
   const currentQuestion = countriesData[currentQuestionIndex]
-  const capitals = [
-    currentQuestion.capital,
-    ...getRandomCapitals(currentQuestion.capital)
-  ].sort(() => Math.random() - 0.5)
 
   const handleOptionClick = (capital) => {
     setSelectedCapital(capital)
     if (capital === currentQuestion.capital) {
       setShowSuccessMessage(1)
     } else {
+      setCapitals(generateCapitals(currentQuestionIndex)) // Refresh capitals only for wrong answers
       setShowSuccessMessage(2)
     }
   }
@@ -31,6 +29,8 @@ const GuessTheCapitalPage = () => {
     setCurrentQuestionIndex(Math.floor(Math.random() * countriesData.length))
     setSelectedCapital(null)
     setShowSuccessMessage(0)
+    // Refresh capitals for the next question
+    setCapitals(generateCapitals(currentQuestionIndex))
   }
 
   return (
@@ -57,6 +57,15 @@ const GuessTheCapitalPage = () => {
       </div>
     </Layout>
   )
+}
+
+const generateCapitals = (questionIndex) => {
+  const currentQuestion = countriesData[questionIndex]
+  const capitals = [
+    currentQuestion.capital,
+    ...getRandomCapitals(currentQuestion.capital)
+  ].sort(() => Math.random() - 0.5)
+  return capitals
 }
 
 const getRandomCapitals = (correctCapital) => {
