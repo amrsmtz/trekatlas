@@ -21,9 +21,8 @@ const IndexPage = () => (
       <h1>
         Welcome to <b>TrekAtlas!</b>
       </h1>
-      <p>
-        <Link to="/guess-the-capital/">Guess the Capital</Link>
-      </p>
+      <p><Link to="/guess-the-capital/">Guess the Capital</Link></p>
+      <p><Link to="/guess-the-capital-score/">Guess the Capital with score</Link></p>
     </div>
   </Layout>
 )
