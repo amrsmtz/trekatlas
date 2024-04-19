@@ -20,7 +20,7 @@ const GuessTheCapitalPage = () => {
     if (capital === currentQuestion.capital) {
       setShowMessage(1)
       setTimeout(() => {
-        const newQuestionIndex = Math.floor(Math.random() * countriesData.length)
+        let newQuestionIndex = Math.floor(Math.random() * countriesData.length)
         setCurrentQuestionIndex(newQuestionIndex)
         setSelectedCapital(null)
         setShowMessage(0)
