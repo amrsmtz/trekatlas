@@ -1,8 +1,8 @@
-import * as React from "react"
-import { useState } from "react"
+import React, { useState } from "react"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import ProgressBar from "../components/progress-bar"
 
 import countriesData from "../data/countries.json"
 import "./guess-the-capital.css"
@@ -54,7 +54,7 @@ const GuessTheCapitalPage = () => {
   return (
     <Layout>
       <h1>Guess the Capital</h1>
-      <h2>{currentQuestion.name} {round}/10</h2>
+      <h2>{currentQuestion.name}</h2>
       <div className="clickable-options">
         {capitals.map((capital, index) => (
           <button key={index} onClick={() => handleOptionClick(capital)}>
@@ -62,6 +62,7 @@ const GuessTheCapitalPage = () => {
           </button>
         ))}
       </div>
+      <ProgressBar progress={round*10} />
       <div className="message">
         {showMessage === 1 && !showResult && (
           <p className="success">Congratulations! You guessed it right!</p>
