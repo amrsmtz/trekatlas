@@ -23,7 +23,7 @@ const GuessTheCapitalPage = () => {
   const handleOptionClick = (capital) => {
     setSelectedCapital(capital)
    
-    if (round < 9) {
+    if (round < 10) {
       if (capital === currentQuestion.capital) {
         setShowMessage(1)
         setTimeout(() => {
@@ -44,7 +44,6 @@ const GuessTheCapitalPage = () => {
         }, 1000)
       }
     } else {
-      setRound(10)
       setShowResult(true)
     }
   }
