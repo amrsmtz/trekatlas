@@ -2,7 +2,9 @@
   transition: .4s;;
 }
 main {
-  max-width: 600px;;
+  position: relative;
+  max-width: 600px;
+  height: calc(100vh - var(--size-gutter));
   margin: 0 auto;
 }
 button {

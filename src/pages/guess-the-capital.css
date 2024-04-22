@@ -35,7 +35,7 @@ div.controls-section {
 }
 
 div.progress-bar {
-  position: fixed;
+  position: absolute;
   bottom: 2em;
-  max-width: 600px;
+  width: 100%;
 }
