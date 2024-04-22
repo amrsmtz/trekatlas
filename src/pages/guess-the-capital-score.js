@@ -23,25 +23,28 @@ const GuessTheCapitalPage = () => {
   const handleOptionClick = (capital) => {
     setSelectedCapital(capital)
    
-    if (capital === currentQuestion.capital && round < 10) {
-      setShowMessage(1)
-      setTimeout(() => {
-        let newQuestionIndex = Math.floor(Math.random() * countriesData.length)
-        setCurrentQuestionIndex(newQuestionIndex)
-        setSelectedCapital(null)
-        setShowMessage(0)
-        setCapitals(generateCapitals(newQuestionIndex))
-        setScore(score + 1)
-        setRound(round + 1)
-      }, 1000)
-    } else if (round < 10) {
-      setShowMessage(2)
-      setTimeout(() => {
-        setCapitals(generateCapitals(currentQuestionIndex))
-        setShowMessage(0)
-        setRound(round + 1)
-      }, 1000)
+    if (round < 9) {
+      if (capital === currentQuestion.capital) {
+        setShowMessage(1)
+        setTimeout(() => {
+          let newQuestionIndex = Math.floor(Math.random() * countriesData.length)
+          setCurrentQuestionIndex(newQuestionIndex)
+          setSelectedCapital(null)
+          setShowMessage(0)
+          setCapitals(generateCapitals(newQuestionIndex))
+          setScore(score + 1)
+          setRound(round + 1)
+        }, 1000)
+      } else {
+        setShowMessage(2)
+        setTimeout(() => {
+          setCapitals(generateCapitals(currentQuestionIndex))
+          setShowMessage(0)
+          setRound(round + 1)
+        }, 1000)
+      }
     } else {
+      setRound(10)
       setShowResult(true)
     }
   }
@@ -66,10 +69,12 @@ const GuessTheCapitalPage = () => {
           <p className="failure">Oops! You guessed it wrong.</p>
         )}
         {showResult && (
-          <div>
+          <>
             <p>You get a score of {score}/10 !</p>
-            <RefreshButton />
-          </div>
+            <div className="refresh-button">
+              <RefreshButton />
+            </div>
+          </>
         )}
       </div>
     </Layout>
