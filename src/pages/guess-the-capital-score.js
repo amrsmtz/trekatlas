@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import ProgressBar from "../components/progress-bar"
+import RefreshButton from "../components/refresh-button"
 
 import countriesData from "../data/countries.json"
 import "./guess-the-capital.css"
@@ -67,7 +68,7 @@ const GuessTheCapitalPage = () => {
         {showResult && (
           <div>
             <p>You get a score of {score}/10 !</p>
-            <Link to="/guess-the-capital-score/">Refresh</Link>
+            <RefreshButton />
           </div>
         )}
       </div>
