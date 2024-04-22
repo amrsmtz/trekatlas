@@ -4,7 +4,7 @@
 main {
   position: relative;
   max-width: 600px;
-  height: calc(100vh - var(--size-gutter));
+  height: calc(100svh - var(--size-gutter));
   margin: 0 auto;
 }
 button {
