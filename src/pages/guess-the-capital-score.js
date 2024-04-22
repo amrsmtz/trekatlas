@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -21,7 +22,7 @@ const GuessTheCapitalPage = () => {
   const handleOptionClick = (capital) => {
     setSelectedCapital(capital)
    
-    if (capital === currentQuestion.capital) {
+    if (capital === currentQuestion.capital && round < 10) {
       setShowMessage(1)
       setTimeout(() => {
         let newQuestionIndex = Math.floor(Math.random() * countriesData.length)
@@ -32,22 +33,15 @@ const GuessTheCapitalPage = () => {
         setScore(score + 1)
         setRound(round + 1)
       }, 1000)
-    } else {
+    } else if (round < 10) {
       setShowMessage(2)
       setTimeout(() => {
         setCapitals(generateCapitals(currentQuestionIndex))
         setShowMessage(0)
         setRound(round + 1)
       }, 1000)
-    }
-
-    if (round === 10) {
+    } else {
       setShowResult(true)
-    }
-    if (round === 11) {
-      setScore(0)
-      setRound(0)
-      setShowResult(false)
     }
   }
 
@@ -71,7 +65,10 @@ const GuessTheCapitalPage = () => {
           <p className="failure">Oops! You guessed it wrong.</p>
         )}
         {showResult && (
-          <p>You get a score of {score}/10 !</p>
+          <div>
+            <p>You get a score of {score}/10 !</p>
+            <Link to="/guess-the-capital-score/">Refresh</Link>
+          </div>
         )}
       </div>
     </Layout>
