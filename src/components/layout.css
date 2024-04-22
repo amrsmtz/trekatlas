@@ -5,15 +5,6 @@ main {
   max-width: 600px;;
   margin: 0 auto;
 }
-footer {
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 1em;
-}
 button {
   cursor: pointer;
   background-color: var(--color-primary);

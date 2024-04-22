@@ -8,6 +8,8 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
+import ProgressBar from "../components/progress-bar"
+
 // import Header from "./header"
 import "./layout-gatsby.css"
 import "./layout.css"
@@ -34,14 +36,6 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `var(--space-5)`,
-            fontSize: `var(--font-sm)`,
-          }}
-        >
-          © {new Date().getFullYear()}
-        </footer>
       </div>
     </>
   )
