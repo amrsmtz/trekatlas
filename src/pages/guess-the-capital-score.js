@@ -15,7 +15,7 @@ const GuessTheCapitalPage = () => {
   const [showMessage, setShowMessage] = useState(0)
   const [capitals, setCapitals] = useState(generateCapitals(currentQuestionIndex))
   const [score, setScore] = useState(0)
-  const [round, setRound] = useState(0)
+  const [round, setRound] = useState(1)
   const [showResult, setShowResult] = useState(false)
 
   const currentQuestion = countriesData[currentQuestionIndex]
@@ -44,7 +44,14 @@ const GuessTheCapitalPage = () => {
         }, 1000)
       }
     } else {
-      setShowResult(true)
+      if (capital === currentQuestion.capital) {
+        setScore(score + 1)
+      }
+      setShowMessage(1)
+      setTimeout(() => {
+        setShowMessage(0)
+        setShowResult(true)
+      }, 1000)
     }
   }
 
