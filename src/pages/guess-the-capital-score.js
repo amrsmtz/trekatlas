@@ -43,7 +43,7 @@ const GuessTheCapitalPage = () => {
           setRound(round + 1)
         }, 1000)
       }
-    } else {
+    } else if (round === 10) {
       if (capital === currentQuestion.capital) {
         setScore(score + 1)
       }
