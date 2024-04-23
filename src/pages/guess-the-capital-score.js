@@ -51,7 +51,7 @@ const GuessTheCapitalPage = () => {
       setTimeout(() => {
         setShowMessage(0)
         setShowResult(true)
-      }, 1000)
+      }, 1500)
     }
   }
 
