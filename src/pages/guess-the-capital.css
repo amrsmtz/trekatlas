@@ -2,7 +2,7 @@ div.clickable-options {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  margin: 3em 0;
+  margin: 3em 0 0 0;
 }
 div.clickable-options button {
   background: none;
