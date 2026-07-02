@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "trekatlas",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A simple app to practice your world knowledge.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Alexandre Schmitz",
   "dependencies": {
     "gatsby": "^5.16.1",
     "gatsby-plugin-image": "^3.16.0",
@@ -32,9 +32,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/amrsmtz/trekatlas"
   }
 }

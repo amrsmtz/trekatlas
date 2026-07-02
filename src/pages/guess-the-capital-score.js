@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -7,6 +6,7 @@ import ProgressBar from "../components/progress-bar"
 import RefreshButton from "../components/refresh-button"
 
 import countriesData from "../data/countries.json"
+import { generateCapitals } from "../utils/capitals"
 import "./guess-the-capital.css"
 
 const GuessTheCapitalPage = () => {
@@ -77,7 +77,7 @@ const GuessTheCapitalPage = () => {
           </button>
         ))}
       </div>
-      <ProgressBar progress={round*10} />
+      <ProgressBar progress={showResult ? 100 : (round - 1) * 10} />
       <div className="message">
         {showMessage === 1 && !showResult && (
           <p className="success">Congratulations! You guessed it right!</p>
@@ -87,7 +87,7 @@ const GuessTheCapitalPage = () => {
         )}
         {showResult && (
           <>
-            <p>You get a score of {score}/10 !</p>
+            <p>You got a score of {score}/10!</p>
             <div className="refresh-button">
               <RefreshButton />
             </div>
@@ -98,29 +98,6 @@ const GuessTheCapitalPage = () => {
   )
 }
 
-const generateCapitals = (questionIndex) => {
-  const currentQuestion = countriesData[questionIndex]
-  const capitals = [
-    currentQuestion.capital,
-    ...getRandomCapitals(currentQuestion.capital)
-  ].sort(() => Math.random() - 0.5)
-  return capitals
-}
-
-const getRandomCapitals = (correctCapital) => {
-  const allCapitals = countriesData.map((country) => country.capital)
-  const uniqueCapitals = allCapitals.filter((capital) => capital !== correctCapital && capital !== '') // Exclude empty strings
-  const randomCapitals = []
-  while (randomCapitals.length < 3) {
-    const randomIndex = Math.floor(Math.random() * uniqueCapitals.length)
-    const randomCapital = uniqueCapitals[randomIndex]
-    if (randomCapital !== '' && !randomCapitals.includes(randomCapital)) { // Check if not empty string
-      randomCapitals.push(randomCapital)
-    }
-  }
-  return randomCapitals
-}
-
-export const Head = () => <Seo title="Guess the Capital" />
+export const Head = () => <Seo title="Guess the Capital with Score" />
 
 export default GuessTheCapitalPage

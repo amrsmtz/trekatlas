@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 import countriesData from "../data/countries.json"
+import { generateCapitals } from "../utils/capitals"
 import "./guess-the-capital.css"
 
 const GuessTheCapitalPage = () => {
@@ -66,29 +67,6 @@ const GuessTheCapitalPage = () => {
       </div>
     </Layout>
   )
-}
-
-const generateCapitals = (questionIndex) => {
-  const currentQuestion = countriesData[questionIndex]
-  const capitals = [
-    currentQuestion.capital,
-    ...getRandomCapitals(currentQuestion.capital)
-  ].sort(() => Math.random() - 0.5)
-  return capitals
-}
-
-const getRandomCapitals = (correctCapital) => {
-  const allCapitals = countriesData.map((country) => country.capital)
-  const uniqueCapitals = allCapitals.filter((capital) => capital !== correctCapital && capital !== '') // Exclude empty strings
-  const randomCapitals = []
-  while (randomCapitals.length < 3) {
-    const randomIndex = Math.floor(Math.random() * uniqueCapitals.length)
-    const randomCapital = uniqueCapitals[randomIndex]
-    if (randomCapital !== '' && !randomCapitals.includes(randomCapital)) { // Check if not empty string
-      randomCapitals.push(randomCapital)
-    }
-  }
-  return randomCapitals
 }
 
 export const Head = () => <Seo title="Guess the Capital" />
