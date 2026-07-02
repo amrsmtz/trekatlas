@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
@@ -10,19 +10,28 @@ import countriesData from "../data/countries.json"
 import "./guess-the-capital.css"
 
 const GuessTheCapitalPage = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(Math.floor(Math.random() * countriesData.length))
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(null)
   const [selectedCapital, setSelectedCapital] = useState(null)
   const [showMessage, setShowMessage] = useState(0)
-  const [capitals, setCapitals] = useState(generateCapitals(currentQuestionIndex))
+  const [capitals, setCapitals] = useState([])
   const [score, setScore] = useState(0)
   const [round, setRound] = useState(1)
   const [showResult, setShowResult] = useState(false)
 
-  const currentQuestion = countriesData[currentQuestionIndex]
+  // The question is picked after mount: using Math.random() in the initial
+  // state would make the client disagree with the build-time HTML (hydration mismatch)
+  useEffect(() => {
+    const questionIndex = Math.floor(Math.random() * countriesData.length)
+    setCurrentQuestionIndex(questionIndex)
+    setCapitals(generateCapitals(questionIndex))
+  }, [])
+
+  const currentQuestion = currentQuestionIndex === null ? null : countriesData[currentQuestionIndex]
 
   const handleOptionClick = (capital) => {
+    if (selectedCapital !== null || showResult) return
     setSelectedCapital(capital)
-   
+
     if (round < 10) {
       if (capital === currentQuestion.capital) {
         setShowMessage(1)
@@ -39,15 +48,17 @@ const GuessTheCapitalPage = () => {
         setShowMessage(2)
         setTimeout(() => {
           setCapitals(generateCapitals(currentQuestionIndex))
+          setSelectedCapital(null)
           setShowMessage(0)
           setRound(round + 1)
         }, 1000)
       }
     } else if (round === 10) {
-      if (capital === currentQuestion.capital) {
+      const isCorrect = capital === currentQuestion.capital
+      if (isCorrect) {
         setScore(score + 1)
       }
-      setShowMessage(1)
+      setShowMessage(isCorrect ? 1 : 2)
       setTimeout(() => {
         setShowMessage(0)
         setShowResult(true)
@@ -58,7 +69,7 @@ const GuessTheCapitalPage = () => {
   return (
     <Layout>
       <h1>Guess the Capital</h1>
-      <h2>{currentQuestion.name}</h2>
+      <h2>{currentQuestion ? currentQuestion.name : "…"}</h2>
       <div className="clickable-options">
         {capitals.map((capital, index) => (
           <button key={index} onClick={() => handleOptionClick(capital)}>
