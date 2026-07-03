@@ -5,6 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Serve TrekAtlas (gatsby develop)",
+      "command": "npm run develop",
+      "cwd": "${workspaceFolder}",
+      "serverReadyAction": {
+        "pattern": "(http://localhost:[0-9]+)/",
+        "uriFormat": "%s",
+        "action": "openExternally"
+      }
+    },
+    {
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",
