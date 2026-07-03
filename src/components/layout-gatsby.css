@@ -1,10 +1,19 @@
 :root {
-  --border-radius: 4px;
-  --color-text: #333;
-  --color-primary: #41B06E;
-  --color-secondary: #DD5746;
+  --border-radius: 12px;
+  --color-bg: #f4f7f5;
+  --color-surface: #ffffff;
+  --color-text: #1f2d27;
+  --color-text-muted: #5f7269;
+  --color-border: #dde5e0;
+  --color-primary: #1f9d61;
+  --color-primary-dark: #157a4a;
+  --color-primary-tint: #e3f6ec;
+  --color-secondary: #dd5746;
+  --color-secondary-dark: #b23c2c;
+  --color-secondary-tint: #fdece9;
   --color-code-bg: #fff4db;
   --color-code: #8a6534;
+  --header-height: 60px;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",

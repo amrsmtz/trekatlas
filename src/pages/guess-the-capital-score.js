@@ -66,13 +66,26 @@ const GuessTheCapitalPage = () => {
     }
   }
 
+  const feedbackClass = (capital) => {
+    if (selectedCapital === null) return ""
+    if (capital === currentQuestion.capital) {
+      return capital === selectedCapital ? "correct" : "reveal"
+    }
+    return capital === selectedCapital ? "wrong" : ""
+  }
+
   return (
     <Layout>
-      <h1>Guess the Capital</h1>
-      <h2>{currentQuestion ? currentQuestion.name : "…"}</h2>
+      <h1 className="game-title">Guess the Capital — Challenge</h1>
+      <h2 className="question-country">{currentQuestion ? currentQuestion.name : "…"}</h2>
+      <p className="game-status">Round {Math.min(round, 10)}/10 · Score {score}</p>
       <div className="clickable-options">
         {capitals.map((capital, index) => (
-          <button key={index} onClick={() => handleOptionClick(capital)}>
+          <button
+            key={index}
+            className={feedbackClass(capital)}
+            onClick={() => handleOptionClick(capital)}
+          >
             {capital}
           </button>
         ))}

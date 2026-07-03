@@ -1,41 +1,95 @@
+h1.game-title {
+  margin-top: 0;
+  padding-top: var(--space-4);
+  margin-bottom: 0;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+}
+
+h2.question-country {
+  margin-top: var(--space-2);
+  font-size: 2.2rem;
+  line-height: var(--line-height-dense);
+}
+
+p.game-status {
+  margin: var(--space-2) 0 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-sm);
+}
+
 div.clickable-options {
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  margin: 3em 0 0 0;
+  gap: 0.75em;
+  margin: 2em 0 0 0;
 }
 div.clickable-options button {
-  background: none;
-  border: 1px solid black;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
   color: inherit;
+  font-size: var(--font-lg);
+  font-weight: 500;
+  text-align: left;
+  padding: 1em 1.25em;
+  box-shadow: 0 1px 2px rgba(15, 40, 30, 0.05);
+}
+div.clickable-options button:hover {
+  background: var(--color-surface);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(15, 40, 30, 0.08);
+  transform: translateY(-1px);
+}
+div.clickable-options button.correct {
+  background: var(--color-primary-tint);
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+div.clickable-options button.wrong {
+  background: var(--color-secondary-tint);
+  border-color: var(--color-secondary);
+  color: var(--color-secondary-dark);
+}
+div.clickable-options button.reveal {
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
 }
 
 div.message {
-  padding: 2em 0;
+  padding: 1.5em 0;
+  text-align: center;
+  min-height: 4.5em;
+}
+div.message p.success {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+div.message p.failure {
+  color: var(--color-secondary-dark);
+  font-weight: 600;
 }
 div.message div.refresh-button {
   display: flex;
-  justify-content: flex-end;
-}
-div.message p.success {
-  color: var(--color-primary);
-}
-div.message p.failure {
-  color: var(--color-secondary);
-}
-
-div.controls-section {
-  display: flex;
-  flex-direction: row-reverse;
-  position: fixed;
-  left: 0;
-  bottom: 2em;
-  width: 100%;
-  padding: var(--size-gutter);
+  justify-content: center;
+  margin-top: var(--space-3);
 }
 
 div.progress-bar {
   position: absolute;
   bottom: 0;
   width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-border);
+  overflow: hidden;
+}
+div.progress-bar div.progress-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--color-primary);
+  transition: width 0.5s ease-in-out;
 }
